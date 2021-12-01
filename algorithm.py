@@ -1,11 +1,9 @@
 # euclidean algorithm
 def gcd(x, y):
-    remainder = x % y
-
-    if y % remainder == 0:
-        return remainder
+    if y == 0:
+        return x
     else:
-        return gcd(y, remainder)
+        return gcd(y, x % y)
 
 
 # extended euclidean algorithm
@@ -14,19 +12,11 @@ x_set = [1, 0]
 y_set = [0, 1]
 
 
-def xk(k, quotient):
-    return x_set[k - 2] - quotient * x_set[k - 1]
-
-
-def yk(k, quotient):
-    return y_set[k - 2] - quotient * y_set[k - 1]
-
-
 def extended_euclidean_algorithm(x, y, index=2):
     quotient = x // y
     remainder = x % y
-    a = xk(index, quotient)
-    b = yk(index, quotient)
+    a = x_set[index - 2] - quotient * x_set[index - 1]
+    b = y_set[index - 2] - quotient * y_set[index - 1]
 
     if remainder == gcd(x, y):
         return a, b
