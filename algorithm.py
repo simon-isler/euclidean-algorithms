@@ -12,16 +12,19 @@ x_set = [1, 0]
 y_set = [0, 1]
 
 
-def extended_euclidean_algorithm(x, y, index=2):
-    quotient = x // y
-    remainder = x % y
-    a = x_set[index - 2] - quotient * x_set[index - 1]
-    b = y_set[index - 2] - quotient * y_set[index - 1]
+def extended_euclidean_algorithm(a, b, index=2):
+    if b > a:
+        a, b = b, a
 
-    if remainder == gcd(x, y):
-        return a, b
+    quotient = a // b
+    remainder = a % b
+    x = x_set[index - 2] - quotient * x_set[index - 1]
+    y = y_set[index - 2] - quotient * y_set[index - 1]
+
+    if remainder == gcd(a, b):
+        return x, y
     else:
         index += 1
-        x_set.append(a)
-        y_set.append(b)
-        return extended_euclidean_algorithm(y, remainder, index)
+        x_set.append(x)
+        y_set.append(y)
+        return extended_euclidean_algorithm(b, remainder, index)
