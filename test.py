@@ -8,7 +8,7 @@ class EuclideanAlgorithms(unittest.TestCase):
 
     def test_gcd(self):
         self.assertEqual(gcd(self.a, self.b), 51)
-        self.assertEqual(gcd(self.a, self.b), 51)
+        self.assertEqual(gcd(self.b, self.a), 51)
 
     def test_extended_euclidean_algorithm(self):
         x, y = extended_euclidean_algorithm(self.a, self.b)
